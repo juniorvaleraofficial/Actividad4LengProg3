@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Actividad4LengProg3.Models.EstudianteViewModel>
+@{
+    ViewData["Title"] = "Lista de Estudiantes";
+}
+
+<h3>Estudiantes registrados</h3>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">No hay estudiantes registrados.</div>
+}
+else
+{
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(m => m.First().Matricula)</th>
+                <th>@Html.DisplayNameFor(m => m.First().NombreCompleto)</th>
+                <th>@Html.DisplayNameFor(m => m.First().Carrera)</th>
+                <th>@Html.DisplayNameFor(m => m.First().Recinto)</th>
+                <th>@Html.DisplayNameFor(m => m.First().Genero)</th>
+                <th>@Html.DisplayNameFor(m => m.First().Turno)</th>
+                <th>@Html.DisplayNameFor(m => m.First().EstaBecado)</th>
+                <th>@Html.DisplayNameFor(m => m.First().PorcentajeBeca)</th>
+                <th style="width:160px;">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var e in Model)
+            {
+                <tr>
+                    <td>@e.Matricula</td>
+                    <td>@e.NombreCompleto</td>
+                    <td>@e.Carrera</td>
+                    <td>@e.Recinto</td>
+                    <td>@e.Genero</td>
+                    <td>@e.Turno</td>
+                    <td>@(e.EstaBecado ? "Sí" : "No")</td>
+                    <td>@(e.PorcentajeBeca?.ToString() ?? "-")</td>
+                    <td>
+                        <a asp-action="Editar" asp-route-matricula="@e.Matricula"
+                           class="btn btn-sm btn-primary">Editar</a>
+                        <form asp-action="Eliminar" asp-route-matricula="@e.Matricula"
+                              method="post" class="d-inline">
+                            <button type="submit" class="btn btn-sm btn-danger"
+                                    onclick="return confirm('¿Eliminar este registro?');">
+                                Eliminar
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

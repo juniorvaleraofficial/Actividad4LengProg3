@@ -1,0 +1,124 @@
+﻿@model Actividad4LengProg3.Models.EstudianteViewModel
+@{
+    // Resgistro de estudiantes
+    ViewData["Title"] = "Registrar Estudiantes";
+}
+
+<h3>Registrar Estudiantes</h3>
+
+<form asp-action="Registrar" method="post">
+    <div class="row g-3">
+        <div class="col-md-6">
+            <label asp-for="NombreCompleto" class="form-label"></label>
+            <input asp-for="NombreCompleto" class="form-control" />
+            <span asp-validation-for="NombreCompleto" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-6">
+            <label asp-for="Matricula" class="form-label"></label>
+            <input asp-for="Matricula" class="form-control" />
+            <span asp-validation-for="Matricula" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-6">
+            <label asp-for="Carrera" class="form-label"></label>
+            <select asp-for="Carrera" class="form-select"
+                    asp-items="@(new SelectList(ViewBag.Carreras, "Value", "Text"))">
+                <option value="">-- Seleccione --</option>
+            </select>
+            <span asp-validation-for="Carrera" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-6">
+            <label asp-for="Recinto" class="form-label"></label>
+            <select asp-for="Recinto" class="form-select"
+                    asp-items="@(new SelectList(ViewBag.Recintos, "Value", "Text"))">
+                <option value="">-- Seleccione --</option>
+            </select>
+            <span asp-validation-for="Recinto" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-6">
+            <label asp-for="CorreoInstitucional" class="form-label"></label>
+            <input asp-for="CorreoInstitucional" class="form-control" />
+            <span asp-validation-for="CorreoInstitucional" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-3">
+            <label asp-for="Celular" class="form-label"></label>
+            <input asp-for="Celular" class="form-control" />
+            <span asp-validation-for="Celular" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-3">
+            <label asp-for="Telefono" class="form-label"></label>
+            <input asp-for="Telefono" class="form-control" />
+            <span asp-validation-for="Telefono" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-12">
+            <label asp-for="Direccion" class="form-label"></label>
+            <input asp-for="Direccion" class="form-control" />
+            <span asp-validation-for="Direccion" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-4">
+            <label asp-for="FechaNacimiento" class="form-label"></label>
+            <input asp-for="FechaNacimiento" type="date" class="form-control" />
+            <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-4">
+            <label asp-for="Genero" class="form-label"></label>
+            <select asp-for="Genero" class="form-select"
+                    asp-items="@(new SelectList(ViewBag.Generos, "Value", "Text"))">
+                <option value="">-- Seleccione --</option>
+            </select>
+            <span asp-validation-for="Genero" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-4">
+            <label asp-for="Turno" class="form-label"></label>
+            <select asp-for="Turno" class="form-select"
+                    asp-items="@(new SelectList(ViewBag.Turnos, "Value", "Text"))">
+                <option value="">-- Seleccione --</option>
+            </select>
+            <span asp-validation-for="Turno" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-check mt-4">
+                
+                <input asp-for="EstaBecado" class="form-check-input" id="EstaBecado" />
+                <label for="EstaBecado" class="form-check-label">¿Está becado?</label>
+            </div>
+        </div>
+
+        <div class="col-md-4" id="grupoPorcentajeBeca">
+            <label asp-for="PorcentajeBeca" class="form-label"></label>
+            <input asp-for="PorcentajeBeca" class="form-control" />
+            <span asp-validation-for="PorcentajeBeca" class="text-danger"></span>
+        </div>
+
+        <div class="col-12" style="padding-top:20px;">
+            <button type="submit" class="btn btn-success">Almacenar</button>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            const chk = document.getElementById('EstaBecado');   
+            const grp = document.getElementById('grupoPorcentajeBeca');
+
+            function toggleBeca() { grp.style.display = chk.checked ? 'block' : 'none'; }
+
+            if (chk) {
+                chk.addEventListener('change', toggleBeca);
+                toggleBeca(); 
+            }
+        });
+    </script>
+}
