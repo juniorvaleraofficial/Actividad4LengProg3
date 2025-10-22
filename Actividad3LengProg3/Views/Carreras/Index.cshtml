@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Actividad4LengProg3.Models.CarreraViewModel>
+
+<h2>Lista de Carreras</h2>
+
+<p><a href="/Carreras/Create" class="btn btn-primary">Agregar Carrera</a></p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Nombre</th>
+            <th>Créditos</th>
+            <th>Materias</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Codigo</td>
+                <td>@item.Nombre</td>
+                <td>@item.CantidadCreditos</td>
+                <td>@item.CantidadMaterias</td>
+                <td>
+                    <a href="/Carreras/Delete?codigo=@item.Codigo" class="btn btn-danger btn-sm">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
