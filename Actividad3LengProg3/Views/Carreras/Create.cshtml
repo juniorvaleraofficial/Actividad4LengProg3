@@ -1,0 +1,23 @@
+﻿@model Actividad4LengProg3.Models.CarreraViewModel
+
+<h2>Registrar Carrera</h2>
+
+<form asp-action="Create">
+    <div class="form-group">
+        <label asp-for="Codigo"></label>
+        <input asp-for="Codigo" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Nombre"></label>
+        <input asp-for="Nombre" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="CantidadCreditos"></label>
+        <input asp-for="CantidadCreditos" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="CantidadMaterias"></label>
+        <input asp-for="CantidadMaterias" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-success">Guardar</button>
+</form>
